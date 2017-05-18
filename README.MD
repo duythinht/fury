@@ -18,18 +18,18 @@ type Sold struct {
 
 func main() {
   cluster := gocql.NewCluster("10.60.3.13")
-	cluster.Keyspace = "history"
+  cluster.Keyspace = "history"
 
-	if sess, err := cluster.CreateSession(); err == nil {
-		defer sess.Close()
-		rows := QueryUsing(sess).CQL("SELECT user_id, ad_id, created_at, title FROM sold").Rows()
+  if sess, err := cluster.CreateSession(); err == nil {
+  	defer sess.Close()
+  	rows := QueryUsing(sess).CQL("SELECT user_id, ad_id, created_at, title FROM sold").Rows()
 
-		for rows.Next() {
+  	for rows.Next() {
 
-			sold := new(Sold)
-			rows.Scan(sold)
-			fmt.Println(sold.UserID, sold.Title, sold.CreatedAt)
-		}
-	}
+  		sold := new(Sold)
+  		rows.Scan(sold)
+  		fmt.Println(sold.UserID, sold.Title, sold.CreatedAt)
+  	}
+  }
 }
 ```
