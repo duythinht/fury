@@ -28,7 +28,6 @@ func main() {
 
 			sold := new(Sold)
 			rows.Scan(sold)
-
       fmt.Println(sold.UserID, sold.Title, sold.CreatedAt)
 		}
 	}
